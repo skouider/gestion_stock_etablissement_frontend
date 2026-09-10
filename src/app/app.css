@@ -1,0 +1,6 @@
+.main-content {
+  margin-left: 260px; /* Décale le contenu à droite pour laisser la place au sidebar */
+  padding: 30px;      /* Donne de l'espace autour de vos composants (Articles, Stocks...) */
+  min-height: calc(100vh - 70px); /* Prend toute la hauteur moins la navbar */
+  background-color: #f8fafc; /* Un fond gris très léger pour faire ressortir vos pages */
+}

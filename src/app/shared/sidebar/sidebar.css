@@ -1,0 +1,175 @@
+.sidebar {
+  width: 260px;
+  height: 100vh;
+
+  background: #1e293b;
+
+  color: white;
+
+  display: flex;
+  flex-direction: column;
+
+  position: fixed;
+
+  left: 0;
+  top: 0;
+
+  z-index: 1000;
+}
+
+
+/* =========================
+   LOGO
+========================= */
+
+.logo {
+
+  padding: 25px 20px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+
+}
+
+.logo-icon {
+
+  font-size: 32px;
+
+}
+
+.logo-text h4 {
+
+  margin: 0;
+
+  font-size: 18px;
+
+  font-weight: 600;
+
+}
+
+.logo-text small {
+
+  color: #94a3b8;
+
+}
+
+
+/* =========================
+   MENU
+========================= */
+
+.menu {
+
+  flex: 1;
+
+  padding: 20px 12px;
+
+  overflow-y: auto;
+
+}
+
+
+.menu-item {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 14px;
+
+  padding: 13px 15px;
+
+  margin-bottom: 6px;
+
+  color: #cbd5e1;
+
+  text-decoration: none;
+
+  border-radius: 10px;
+
+  transition: 0.2s;
+
+  cursor: pointer;
+
+}
+
+
+.menu-item:hover {
+
+  background: #334155;
+
+  color: white;
+
+}
+
+
+.menu-item.active {
+
+  background: #2563eb;
+
+  color: white;
+
+}
+
+
+.icon {
+
+  font-size: 20px;
+
+  width: 25px;
+
+  text-align: center;
+
+}
+
+
+/* =========================
+   SCANNER SPECIAL
+========================= */
+
+.scanner {
+
+  margin-top: 10px;
+
+  background: rgba(37, 99, 235, 0.2);
+
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.sidebar-footer {
+
+  padding: 20px;
+
+  border-top: 1px solid rgba(255,255,255,0.1);
+
+  color: #94a3b8;
+
+  font-size: 14px;
+
+}
+
+
+.status-dot {
+
+  width: 10px;
+
+  height: 10px;
+
+  background: #22c55e;
+
+  border-radius: 50%;
+
+  display: inline-block;
+
+  margin-right: 8px;
+
+}
