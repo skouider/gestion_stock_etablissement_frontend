@@ -2,14 +2,14 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MouvementStockDto } from '../../models/mouvement-stock.dto';
 import { Observable } from 'rxjs';
-import { environment } from '../../../environements/environment';
+import { environement } from '../../../environements/environement';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MouvementStockService {
 
-  private apiUrl = `${environment.apiUrl}/api/mouvements-stock`;
+  private apiUrl = `${environement.apiUrl}/api/mouvements-stock`;
 
   constructor(private http: HttpClient) {}
 

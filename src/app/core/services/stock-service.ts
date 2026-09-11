@@ -3,13 +3,13 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { StockDTO } from '../../models/stock.dto';
 import { StockRequestDTO } from '../../models/stock-request.dto';
-import { environment } from '../../../environements/environment';
+import { environement } from '../../../environements/environement';
 
 @Injectable({
   providedIn: 'root',
 })
 export class StockService {
-    private apiUrl = `${environment.apiUrl}/api/v1/stocks`;
+    private apiUrl = `${environement.apiUrl}/api/v1/stocks`;
 
   constructor(
     private http: HttpClient
