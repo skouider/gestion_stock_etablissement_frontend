@@ -2,13 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ArticleDTO } from '../../models/article.dto';
-import { environement } from '../../../environements/environement';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ArticleService {
-   private apiUrl = `${environement.apiUrl}/api/v1/articles`;
+   private apiUrl = `${environment.apiUrl}/api/v1/articles`;
 
   constructor(private http: HttpClient) {}
 
