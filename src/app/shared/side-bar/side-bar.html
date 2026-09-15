@@ -1,4 +1,22 @@
-<div class="sidebar">
+
+<!-- BOUTON MENU MOBILE -->
+<button class="mobile-menu-button" (click)="ouvrirMenu()">
+  ☰
+</button>
+
+<!-- FOND SOMBRE MOBILE -->
+<div
+  class="mobile-overlay"
+  [class.visible]="menuOuvert"
+  (click)="fermerMenu()">
+</div>
+
+<div class="sidebar" [class.mobile-open]="menuOuvert">
+
+  <!-- BOUTON FERMER MOBILE -->
+  <button class="mobile-close-button" (click)="fermerMenu()">
+    ✕
+  </button>
 
   <!-- LOGO -->
   <div class="logo">
@@ -21,8 +39,8 @@
     <!-- DASHBOARD -->
     <a
       routerLink="dashboard"
-      
-      class="menu-item">
+      class="menu-item"
+      (click)="fermerMenu()">
 
       <span class="icon">🏠</span>
       <span>Dashboard</span>
@@ -34,7 +52,8 @@
     <a
       routerLink="stocks"
       routerLinkActive="active"
-      class="menu-item">
+      class="menu-item"
+      (click)="fermerMenu()">
 
       <span class="icon">📦</span>
       <span>Stocks</span>
@@ -46,7 +65,8 @@
     <a
       routerLink="/articles"
       routerLinkActive="active"
-      class="menu-item">
+      class="menu-item"
+      (click)="fermerMenu()">
 
       <span class="icon">📋</span>
       <span>Articles</span>
@@ -58,7 +78,8 @@
     <a
       routerLink="/scanner"
       routerLinkActive="active"
-      class="menu-item scanner">
+      class="menu-item scanner"
+      (click)="fermerMenu()">
 
       <span class="icon">📷</span>
       <span>Scanner QR</span>
@@ -70,7 +91,8 @@
     <a
       routerLink="/mouvements"
       routerLinkActive="active"
-      class="menu-item">
+      class="menu-item"
+      (click)="fermerMenu()">
 
       <span class="icon">🔄</span>
       <span>Mouvements</span>
@@ -82,7 +104,8 @@
     <a
       routerLink="/departements"
       routerLinkActive="active"
-      class="menu-item">
+      class="menu-item"
+      (click)="fermerMenu()">
 
       <span class="icon">🏢</span>
       <span>Départements</span>
@@ -94,7 +117,8 @@
     <a
       routerLink="/transferts"
       routerLinkActive="active"
-      class="menu-item">
+      class="menu-item"
+      (click)="fermerMenu()">
 
       <span class="icon">🚚</span>
       <span>Transferts</span>
@@ -114,3 +138,4 @@
   </div>
 
 </div>
+

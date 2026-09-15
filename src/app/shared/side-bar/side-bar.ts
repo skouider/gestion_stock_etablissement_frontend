@@ -7,4 +7,14 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
   templateUrl: './side-bar.html',
   styleUrl: './side-bar.css',
 })
-export class SideBar {}
+export class SideBar {
+  menuOuvert = false;
+
+ouvrirMenu() {
+  this.menuOuvert = true;
+}
+
+fermerMenu() {
+  this.menuOuvert = false;
+}
+}
