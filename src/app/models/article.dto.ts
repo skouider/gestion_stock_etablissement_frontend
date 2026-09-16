@@ -16,4 +16,5 @@ export interface ArticleDTO {
 
   stockNom?: string;
 
+  imageUrl?: string;
 }

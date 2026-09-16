@@ -596,6 +596,7 @@ import { ArticleDTO } from '../../../models/article.dto';
 import { MouvementStockDto } from '../../../models/mouvement-stock.dto';
 import { TypeMouvementStock } from '../../../models/type-mouvement-stock.dto';
 import Swal from 'sweetalert2';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-scan-article',
@@ -626,24 +627,23 @@ export class ScanArticle implements OnInit {
 
   TypeMouvementStock = TypeMouvementStock;
 
+  imageArticleUrl: string | null = null;
 
   constructor(
     private route: ActivatedRoute,
     private articleService: ArticleService,
     private mouvementStockService: MouvementStockService,
     private cdr: ChangeDetectorRef,
-    private router:Router
+    private router: Router
   ) { }
 
 
 
 
   ngOnInit(): void {
-    console.log('========== SCAN INIT ==========');
 
     const code = this.route.snapshot.paramMap.get('code');
 
-    console.log('1. Code URL :', code);
 
     if (!code) {
       this.erreur = 'Aucun code article.';
@@ -653,21 +653,18 @@ export class ScanArticle implements OnInit {
 
     this.codeArticle = code;
 
-    console.log('2. Avant appel API');
-    console.log('3. Article avant API :', this.article);
 
 
     this.articleService.getByCode(code).subscribe({
       next: (article: ArticleDTO) => {
-        console.log('4. API RESPONSE :', article);
         this.article = article;
+        this.imageArticleUrl = `${environment.apiUrl}/api/v1/articles/${article.id}/image`;
+
         console.log('5. Article après affectation :', this.article);
         this.cdr.detectChanges();
-        console.log('6. Change detection forcée');
       },
 
       error: (err) => {
-        console.error('6. ERREUR API :', err);
         this.erreur = 'Impossible de récupérer cet article.';
       }
     });
@@ -676,9 +673,7 @@ export class ScanArticle implements OnInit {
 
 
 
-  chargerArticle(code: string): void {
-
-    console.log('Recherche article :', code);
+/*   chargerArticle(code: string): void {
 
     this.articleService.getByCode(code).subscribe({
 
@@ -688,10 +683,13 @@ export class ScanArticle implements OnInit {
 
         this.article = article;
 
-        console.log(
-          'ARTICLE DANS LE COMPOSANT :',
-          this.article
-        );
+        if (this.article?.id) {
+          console.log("le numero de ID de l'article=====", article.id);
+
+          this.imageArticleUrl =
+            `http://localhost:8080/api/v1/articles/${this.article.id}/image`;
+        }
+        console.log("l'url de l'image", this.imageArticleUrl);
 
       },
 
@@ -708,7 +706,7 @@ export class ScanArticle implements OnInit {
 
     });
   }
-
+ */
 
   setType(type: TypeMouvementStock): void {
 
@@ -764,14 +762,7 @@ export class ScanArticle implements OnInit {
     };
 
 
-    console.log(
-      'DTO envoyé :',
-      dto
-    );
-
-
     this.isSubmitting = true;
-
 
     const requete$ =
       this.typeMouvement ===
@@ -801,10 +792,10 @@ export class ScanArticle implements OnInit {
           confirmButtonColor: '#198754'
         }).then(() => {
           if (this.article?.id) {
-            console.log("l'article ID===",this.article?.id);
-            
-             this.router.navigate(['/articles', this.article.id]);
-             }
+            console.log("l'article ID===", this.article?.id);
+
+            this.router.navigate(['/articles', this.article.id]);
+          }
         });
 
 

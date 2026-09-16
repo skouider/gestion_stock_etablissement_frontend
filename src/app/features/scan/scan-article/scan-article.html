@@ -308,19 +308,38 @@
     <!-- Informations article -->
     <div class="article-card">
 
-      <div class="article-info">
-        <span>Code article</span>
-        <strong>{{ article.code }}</strong>
+      <!-- INFORMATIONS -->
+      <div class="article-details">
+
+        <div class="article-info">
+          <span>Code article</span>
+          <strong>{{ article.code }}</strong>
+        </div>
+
+        <div class="article-info">
+          <span>Désignation</span>
+          <strong>{{ article.nom }}</strong>
+        </div>
+
+        <div class="stock-info">
+          <span>Stock actuel</span>
+          <strong>{{ article.quantite }} unités</strong>
+        </div>
+
       </div>
 
-      <div class="article-info">
-        <span>Désignation</span>
-        <strong>{{ article.nom }}</strong>
-      </div>
 
-      <div class="stock-info">
-        <span>Stock actuel</span>
-        <strong>{{ article.quantite }} unités</strong>
+      <!-- PHOTO -->
+      <div class="article-photo">
+
+        <img *ngIf="imageArticleUrl" [src]="imageArticleUrl" [alt]="article.nom" />
+
+        <div *ngIf="!imageArticleUrl" class="no-photo">
+
+          📦
+
+        </div>
+
       </div>
 
     </div>
@@ -335,20 +354,14 @@
 
         <div class="type-buttons">
 
-          <button
-            type="button"
-            class="type-button entree"
-            [class.active]="typeMouvement === TypeMouvementStock.ENTREE"
+          <button type="button" class="type-button entree" [class.active]="typeMouvement === TypeMouvementStock.ENTREE"
             (click)="setType(TypeMouvementStock.ENTREE)">
 
             ↓ Entrée
 
           </button>
 
-          <button
-            type="button"
-            class="type-button sortie"
-            [class.active]="typeMouvement === TypeMouvementStock.SORTIE"
+          <button type="button" class="type-button sortie" [class.active]="typeMouvement === TypeMouvementStock.SORTIE"
             (click)="setType(TypeMouvementStock.SORTIE)">
 
             ↑ Sortie
@@ -366,41 +379,24 @@
           Quantité
         </label>
 
-        <input
-          id="quantite"
-          type="number"
-          name="quantite"
-          [(ngModel)]="quantite"
-          min="1"
-          required
-          class="form-input">
+        <input id="quantite" type="number" name="quantite" [(ngModel)]="quantite" min="1" required class="form-input">
 
       </div>
 
       <!-- Département pour une sortie -->
-      <div
-        *ngIf="typeMouvement === TypeMouvementStock.SORTIE"
-        class="form-group">
+      <div *ngIf="typeMouvement === TypeMouvementStock.SORTIE" class="form-group">
 
         <label for="departement">
           Département concerné
         </label>
 
-        <input
-          id="departement"
-          type="text"
-          name="departement"
-          [(ngModel)]="departement"
-          required
-          placeholder="Ex : Cuisine, Maintenance..."
-          class="form-input">
+        <input id="departement" type="text" name="departement" [(ngModel)]="departement" required
+          placeholder="Ex : Cuisine, Maintenance..." class="form-input">
 
       </div>
 
       <!-- Message erreur -->
-      <div
-        *ngIf="erreur"
-        class="form-error">
+      <div *ngIf="erreur" class="form-error">
 
         {{ erreur }}
 
@@ -409,19 +405,13 @@
       <!-- Boutons -->
       <div class="action-buttons">
 
-        <button
-          type="button"
-          class="btn-secondary"
-          (click)="article = null">
+        <button type="button" class="btn-secondary" (click)="article = null">
 
           Annuler
 
         </button>
 
-        <button
-          type="submit"
-          class="btn-primary"
-          [disabled]="!form.valid || isSubmitting">
+        <button type="submit" class="btn-primary" [disabled]="!form.valid || isSubmitting">
 
           {{ isSubmitting ? 'Enregistrement...' : '✓ Valider' }}
 
@@ -435,9 +425,7 @@
 
 
   <!-- Recherche de l'article -->
-  <div
-    *ngIf="!article && !erreur"
-    class="loading-card">
+  <div *ngIf="!article && !erreur" class="loading-card">
 
     <div class="spinner"></div>
 
@@ -452,6 +440,3 @@
   </div>
 
 </div>
-
-
-
