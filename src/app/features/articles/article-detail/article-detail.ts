@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { ArticleService } from '../../../core/article-service';
 import { ArticleDTO } from '../../../models/article.dto';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-article-detail',
@@ -18,6 +19,9 @@ export class ArticleDetail implements OnInit {
 
   loading = true;
   erreur = '';
+
+  imageArticleUrl: string | null = null;
+  imageError = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -56,6 +60,8 @@ export class ArticleDetail implements OnInit {
         console.log('Article détail reçu :', article);
 
         this.article = article;
+        this.imageArticleUrl = `${environment.apiUrl}/api/v1/articles/${article.id}/image`;
+        this.imageError = false;
         this.loading = false;
 
         // Force Angular à mettre à jour la vue
@@ -78,6 +84,14 @@ export class ArticleDetail implements OnInit {
       }
 
     });
+  }
+
+  /**
+   * Repli propre si l'image n'existe pas ou échoue au chargement
+   */
+  onImageError(): void {
+    this.imageError = true;
+    this.cdr.detectChanges();
   }
 
   /**
@@ -115,4 +129,3 @@ export class ArticleDetail implements OnInit {
   }
 
 }
-

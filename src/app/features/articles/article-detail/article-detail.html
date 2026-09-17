@@ -2,185 +2,70 @@
 
   <!-- Chargement -->
   <div *ngIf="loading" class="loading-card">
-
     <div class="spinner"></div>
-
-    <h2>
-      Chargement de l'article...
-    </h2>
-
+    <h2>Chargement de l'article...</h2>
   </div>
-
 
   <!-- Erreur -->
   <div *ngIf="!loading && erreur" class="error-card">
-
-    <h2>
-      Erreur
-    </h2>
-
-    <p>
-      {{ erreur }}
-    </p>
-
+    <h2>Erreur</h2>
+    <p>{{ erreur }}</p>
   </div>
-
 
   <!-- Article -->
   <div *ngIf="!loading && article" class="article-card">
 
-    <!-- Confirmation -->
-    <div class="success-header">
-
-      <div class="success-icon">
-        ✓
-      </div>
-
-      <div>
-        <h1>
-          Opération enregistrée
-        </h1>
-
-        <p>
-          Le mouvement a été enregistré avec succès.
-        </p>
-      </div>
-
-    </div>
-
-
     <!-- Photo -->
     <div class="photo-container">
+      <img
+        *ngIf="imageArticleUrl && !imageError"
+        [src]="imageArticleUrl"
+        [alt]="article.nom"
+        (error)="onImageError()" />
 
-      <div class="photo-placeholder">
-
-        <span>📷</span>
-
-        <p>
-          Photo de l'article
-        </p>
-
-        <small>
-          À ajouter prochainement
-        </small>
-
+      <div *ngIf="!imageArticleUrl || imageError" class="photo-placeholder">
+        <span>📦</span>
       </div>
-
     </div>
 
-
-    <!-- Informations article -->
-    <div class="article-info">
-
-      <h2>
-        Informations article
-      </h2>
-
-
-      <div class="info-row">
-
-        <span>
-          Code article
-        </span>
-
-        <strong>
-          {{ article.code }}
-        </strong>
-
-      </div>
-
-
-      <div class="info-row">
-
-        <span>
-          Désignation
-        </span>
-
-        <strong>
-          {{ article.nom }}
-        </strong>
-
-      </div>
-
-
-      <div
-        *ngIf="article.description"
-        class="info-row description">
-
-        <span>
-          Description
-        </span>
-
-        <strong>
-          {{ article.description }}
-        </strong>
-
-      </div>
-
-
-      <!-- Stock -->
-      <div class="stock-box">
-
-        <span>
-          Niveau actuel du stock
-        </span>
-
-        <strong>
-          {{ article.quantite }}
-        </strong>
-
-        <small>
-          unités
-        </small>
-
-      </div>
-
-
-      <!-- Stock -->
-      <div
-        *ngIf="article.stockNom"
-        class="info-row">
-
-        <span>
-          Stock
-        </span>
-
-        <strong>
-          {{ article.stockNom }}
-        </strong>
-
-      </div>
-
+    <!-- En-tête -->
+    <div class="article-header">
+      <h1>{{ article.nom }}</h1>
+      <span class="code-badge">{{ article.code }}</span>
     </div>
 
+    <p *ngIf="article.description" class="description">
+      {{ article.description }}
+    </p>
+
+    <!-- Stock -->
+    <div class="stock-box">
+      <span>Niveau actuel du stock</span>
+      <div class="stock-value">
+        <strong>{{ article.quantite }}</strong>
+        <small>unités</small>
+      </div>
+    </div>
+
+    <!-- Informations complémentaires -->
+    <div class="article-info" *ngIf="article.stockNom">
+      <div class="info-row">
+        <span>Stock</span>
+        <strong>{{ article.stockNom }}</strong>
+      </div>
+    </div>
 
     <!-- Actions -->
     <div class="actions">
-
-      <!-- Bouton 1 -->
-      <button
-        type="button"
-        class="btn-primary"
-        (click)="scannerAutreArticle()">
-
-        📷 Scanner un autre article
-
+      <button type="button" class="btn-primary" (click)="scannerAutreArticle()">
+        Scanner un autre article
       </button>
 
-
-      <!-- Bouton 2 -->
-      <button
-        type="button"
-        class="btn-secondary"
-        (click)="corrigerMouvement()">
-
-        ↩ Corriger / Mouvement inverse
-
+      <button type="button" class="btn-secondary" (click)="corrigerMouvement()">
+        Corriger / mouvement inverse
       </button>
-
     </div>
 
   </div>
 
 </div>
-
